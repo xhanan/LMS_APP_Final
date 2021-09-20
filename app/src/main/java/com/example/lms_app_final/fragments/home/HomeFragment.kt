@@ -23,7 +23,6 @@ class HomeFragment : Fragment(), TestAdapter.OnItemClickListener,
     private lateinit var database: DatabaseReference
     lateinit var courseList: ArrayList<Course>
 
-    //    lateinit var courseListAdapter: CourseListAdapter
     private var courseAdapter: TestAdapter? = null
     private var editCourseFragment: EditCourseFragment? = null
 
@@ -40,26 +39,9 @@ class HomeFragment : Fragment(), TestAdapter.OnItemClickListener,
 
         recyclerView.layoutManager = LinearLayoutManager(view.context)
 
-//        val options = FirebaseRecyclerOptions.Builder<Course>()
-//            .setQuery(database, Course::class.java)
-//            .setLifecycleOwner(this)
-//            .build()
-
-
         getAndShowCourses()
 
         return view
-    }
-
-    class CourseHolder(val customView: View, var course: Course? = null) :
-        RecyclerView.ViewHolder(customView) {
-
-        fun bind(course: Course) {
-            with(course) {
-                customView.course_title?.text = course.name
-                customView.course_id?.text = course.id
-            }
-        }
     }
 
     override fun onCourseItemClick(courseData: Course, position: Int) {

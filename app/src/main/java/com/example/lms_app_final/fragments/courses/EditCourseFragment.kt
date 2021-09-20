@@ -10,9 +10,6 @@ import com.example.lms_app.data.entities.Course
 import com.example.lms_app_final.databinding.EditCourseBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-/**
- * Created by Yll Memeti on 9/19/2021.
- */
 class EditCourseFragment(private val courseData: Course,private val listener: CourseEditedSuccessfully) :BottomSheetDialogFragment(){
     private var binding: EditCourseBottomSheetBinding? = null
     private val viewModel by viewModels<EditCourseViewModel>()

@@ -1,0 +1,36 @@
+package com.example.lms_app.fragments.home
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.example.lms_app.data.entities.Course
+import com.example.lms_app_final.databinding.CustomRowBinding
+
+class TestAdapter(val context : Context, val courseList : List<Course>,private val listener: OnItemClickListener):RecyclerView.Adapter<TestAdapter.ViewHolder>(){
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TestAdapter.ViewHolder {
+        var holder = ViewHolder(CustomRowBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return holder
+    }
+
+    override fun onBindViewHolder(holder: TestAdapter.ViewHolder, position: Int) {
+       holder.itemBinding.courseId.text = courseList[position].id
+        holder.itemBinding.courseTitle.text = courseList[position].name
+        holder.itemView.setOnClickListener {
+            listener.onCourseItemClick(courseList[position],position)
+        }
+        holder.itemBinding.deleteImage.setOnClickListener {
+            listener.onDeleteClick(courseList[position],position)
+        }
+    }
+
+    override fun getItemCount(): Int = courseList.size
+
+    inner class ViewHolder(val itemBinding: CustomRowBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+    }
+
+    interface OnItemClickListener {
+        fun onCourseItemClick(courseData:Course, position: Int)
+        fun onDeleteClick(courseData:Course, position: Int)
+    }
+}

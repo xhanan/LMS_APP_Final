@@ -73,6 +73,4 @@ class CourseRepository(var application: Application) {
             callback(false)
         }
     }
-
-
 }

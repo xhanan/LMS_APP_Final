@@ -40,7 +40,7 @@ class LoginFragment : Fragment() {
                         // Sign in success, update UI with the signed-in user's information
                         Toast.makeText(requireContext(),"Successfully signed in!", Toast.LENGTH_LONG).show()
                         val user = auth.currentUser
-                        findNavController().navigate(R.id.action_login_fragment_to_coursesFragment)
+                        findNavController().navigate(R.id.action_login_fragment_to_homeFragment)
 
                     } else {
                         // If sign in fails, display a message to the user.
@@ -57,7 +57,7 @@ class LoginFragment : Fragment() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if(currentUser != null){
-            findNavController().navigate(R.id.action_login_fragment_to_coursesFragment)
+            findNavController().navigate(R.id.action_login_fragment_to_homeFragment)
         }
     }
 }

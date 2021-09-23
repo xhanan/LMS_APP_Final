@@ -4,13 +4,26 @@
         android:id="@+id/nav_home"
         android:icon="@drawable/home_vector"
         android:title="Home"
-    />
+        />
+
+    <item
+        android:id="@+id/nav_courses"
+        android:icon="@drawable/course_icon"
+        android:title="Courses"
+        />
 
     <item
         android:id="@+id/nav_add_course"
         android:icon="@drawable/ic_add"
         android:title="Add Course"
         />
+
+    <item
+        android:id="@+id/nav_add_lecture"
+        android:icon="@drawable/ic_add"
+        android:title="Add Lecture"
+        />
+
 
     <item
         android:id="@+id/nav_profile"

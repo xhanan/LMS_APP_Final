@@ -1,18 +1,16 @@
-//package com.example.lms_app.data.lectures
+package com.example.lms_app.data.lectures
 //
-//import android.app.Application
-//import androidx.lifecycle.AndroidViewModel
-//import androidx.lifecycle.LiveData
-//import androidx.lifecycle.viewModelScope
-//import com.example.lms_app.data.DatabaseContext
-//import com.example.lms_app.data.entities.Lecture
-//import kotlinx.coroutines.Dispatchers
-//import kotlinx.coroutines.launch
-//
-//class LectureViewModel(application: Application):AndroidViewModel(application) {
-//    private val allLectures : LiveData<List<Lecture>>
-//    private val lectureRepository : LectureRepository
-//
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import com.example.lms_app.data.entities.Lecture
+
+class LectureViewModel(application: Application):AndroidViewModel(application) {
+
+    private val lectureRepository : LectureRepository = LectureRepository(application)
+
+    public fun getCourseLectures(courseId: String, callback: (ArrayList<Lecture>) -> Unit){
+        lectureRepository.getAllCourseLectures (courseId, callback)
+    }
 //    init {
 //        val lectureDao = DatabaseContext.getDatabase(application).lectureDao()
 //        lectureRepository = LectureRepository(lectureDao)
@@ -42,4 +40,4 @@
 //            lectureRepository.deleteLecture(lecture)
 //        }
 //    }
-//}
+}

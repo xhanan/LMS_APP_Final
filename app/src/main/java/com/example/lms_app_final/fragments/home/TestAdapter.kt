@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lms_app.data.entities.Course
 import com.example.lms_app_final.databinding.CustomRowBinding
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.custom_row.view.*
 
 class TestAdapter(val context : Context, val courseList : List<Course>,private val listener: OnItemClickListener):RecyclerView.Adapter<TestAdapter.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TestAdapter.ViewHolder {
@@ -14,10 +16,13 @@ class TestAdapter(val context : Context, val courseList : List<Course>,private v
     }
 
     override fun onBindViewHolder(holder: TestAdapter.ViewHolder, position: Int) {
-       holder.itemBinding.courseId.text = courseList[position].id
         holder.itemBinding.courseTitle.text = courseList[position].name
+        Picasso.get().load(courseList[position].imageUrl).into(holder.itemBinding.imageUrl)
         holder.itemView.setOnClickListener {
             listener.onCourseItemClick(courseList[position],position)
+        }
+        holder.itemView.editImage.setOnClickListener {
+            listener.onEditClick(courseList[position],position)
         }
         holder.itemBinding.deleteImage.setOnClickListener {
             listener.onDeleteClick(courseList[position],position)
@@ -31,6 +36,7 @@ class TestAdapter(val context : Context, val courseList : List<Course>,private v
 
     interface OnItemClickListener {
         fun onCourseItemClick(courseData:Course, position: Int)
+        fun onEditClick(courseData:Course, position: Int)
         fun onDeleteClick(courseData:Course, position: Int)
     }
 }

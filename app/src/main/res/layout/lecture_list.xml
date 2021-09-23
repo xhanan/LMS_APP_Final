@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="24sp"
+    >
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/thumbnail_url"
+                android:layout_width="110dp"
+                android:layout_height="80dp"
+                android:src="@drawable/backroud_blend"
+                android:importantForAccessibility="no"
+                android:scaleType="centerCrop"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lecture_title"
+                    android:layout_width="170dp"
+                    android:layout_height="60dp"
+                    android:gravity="center_vertical"
+                    android:text="Lecture 1"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/lecture_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="25/09/2021"
+                    android:gravity="bottom"/>
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/deleteLecture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="20dp"
+                android:src="@drawable/ic_baseline_delete_24"
+                app:tint="@color/black" />
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

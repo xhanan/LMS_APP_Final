@@ -4,8 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lms_app.data.entities.Course
 import com.example.lms_app.data.entities.Lecture
 import com.example.lms_app.fragments.home.TestAdapter
+import com.example.lms_app_final.R
 import com.example.lms_app_final.databinding.LectureListBinding
 import com.squareup.picasso.Picasso
 
@@ -17,7 +19,7 @@ class LecturesAdapter(val context: Context, val lectureList: List<Lecture>, priv
 
     override fun onBindViewHolder(holder: LecturesAdapter.ViewHolder, position: Int) {
         holder.itemBinding.lectureTitle.text = lectureList[position].Title
-        Picasso.get().load(lectureList[position].ThumbnailUrl).into(holder.itemBinding.thumbnailUrl)
+        //Picasso.get().load(lectureList[position].ThumbnailUrl).error(R.drawable.backroud_blend).into(holder.itemBinding.thumbnailUrl)
         holder.itemBinding.lectureDate.text = lectureList[position].Description
     }
 
@@ -27,5 +29,8 @@ class LecturesAdapter(val context: Context, val lectureList: List<Lecture>, priv
     }
 
     interface OnItemClickListener {
+        fun onCourseItemClick(lectureData: Lecture, position: Int)
+        fun onEditClick(lectureData: Lecture, position: Int)
+        fun onDeleteClick(lectureData: Lecture, position: Int)
     }
 }

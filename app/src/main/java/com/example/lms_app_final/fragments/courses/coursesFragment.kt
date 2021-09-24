@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -49,7 +50,15 @@ class CoursesFragment : Fragment(), TestAdapter.OnItemClickListener,
 
     override fun onCourseItemClick(courseData: Course, position: Int) {
         lecturesFragment = LecturesFragment(courseData)
-        editCourseFragment?.show(childFragmentManager,"LecturesFragment")
+        val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+        transaction.replace(
+            R.id.fragment_container,
+            lecturesFragment!!
+        )
+
+        transaction.addToBackStack(null)
+
+        transaction.commit()
     }
 
     override fun onEditClick(courseData: Course, position: Int) {

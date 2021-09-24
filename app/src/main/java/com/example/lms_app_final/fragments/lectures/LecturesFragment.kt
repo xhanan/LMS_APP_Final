@@ -49,4 +49,16 @@ class LecturesFragment(private val courseData: Course)  : Fragment(),
             recyclerView.adapter = lectureAdapter
         }
     }
+
+    override fun onCourseItemClick(lectureData: Lecture, position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onEditClick(lectureData: Lecture, position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDeleteClick(lectureData: Lecture, position: Int) {
+        TODO("Not yet implemented")
+    }
 }

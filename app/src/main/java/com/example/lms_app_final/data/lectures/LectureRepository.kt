@@ -10,8 +10,7 @@ class LectureRepository(var application: Application) {
 
     fun getAllCourseLectures(courseId:String, callback: (ArrayList<Lecture>) -> Unit) {
         database = FirebaseDatabase.getInstance().getReference("Lectures")
-        lectures.clear()
-        database.orderByChild("CourseId").equalTo(courseId).addListenerForSingleValueEvent(object : ValueEventListener {
+        database.orderByChild("courseId").equalTo(courseId).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (dataSnap in snapshot.children) {

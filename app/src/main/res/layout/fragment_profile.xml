@@ -62,8 +62,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="50dp"
-            android:hint="First Name"
+            android:layout_marginTop="20dp"
+            android:hint="Full Name"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
             app:boxCornerRadiusTopEnd="20dp"
@@ -81,13 +81,26 @@
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
+
+        <Button
+            android:id="@+id/updateFullName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Update Name"
+            app:layout_constraintEnd_toEndOf="@+id/add_course_description"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/add_course_description"
+            app:layout_constraintTop_toBottomOf="@+id/add_course_description"
+            tools:ignore="MissingConstraints" />
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/lastNameField"
+            android:id="@+id/oldPasswordField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="20dp"
-            android:hint="Last Name"
+            android:layout_marginTop="15dp"
+            android:hint="Old Password"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
             app:boxCornerRadiusTopEnd="20dp"
@@ -95,10 +108,10 @@
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
             app:hintTextColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/firstNameField">
+            app:layout_constraintTop_toBottomOf="@id/Title">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/profile_lastName"
+                android:id="@+id/oldPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -106,12 +119,12 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phoneNumberField"
+            android:id="@+id/newPasswordField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="20dp"
-            android:hint="Phone Number"
+            android:layout_marginTop="15dp"
+            android:hint="New Password"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
             app:boxCornerRadiusTopEnd="20dp"
@@ -119,18 +132,52 @@
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
             app:hintTextColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/lastNameField">
+            app:layout_constraintTop_toBottomOf="@id/Title">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/profile_phoneNumber"
+                android:id="@+id/newPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/confirmNewPasswordField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="15dp"
+            android:hint="Confirm New Password"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintTextColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/Title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirmNewPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/updatePassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Change Password"
+                app:layout_constraintEnd_toEndOf="@+id/add_course_description"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/add_course_description"
+                app:layout_constraintTop_toBottomOf="@+id/add_course_description"
+                tools:ignore="MissingConstraints" />
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

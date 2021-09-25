@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lms_app.data.entities.Course
 import com.example.lms_app_final.databinding.CustomRowBinding
-import com.squareup.picasso.Picasso
+//import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.custom_row.view.*
 
 class TestAdapter(val context : Context, val courseList : List<Course>,private val listener: OnItemClickListener):RecyclerView.Adapter<TestAdapter.ViewHolder>(){
@@ -17,7 +17,7 @@ class TestAdapter(val context : Context, val courseList : List<Course>,private v
 
     override fun onBindViewHolder(holder: TestAdapter.ViewHolder, position: Int) {
         holder.itemBinding.courseTitle.text = courseList[position].name
-        Picasso.get().load(courseList[position].imageUrl).into(holder.itemBinding.imageUrl)
+//        Picasso.get().load(courseList[position].imageUrl).into(holder.itemBinding.imageUrl)
         holder.itemView.setOnClickListener {
             listener.onCourseItemClick(courseList[position],position)
         }

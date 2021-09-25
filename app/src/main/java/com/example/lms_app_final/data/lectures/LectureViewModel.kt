@@ -9,7 +9,7 @@ class LectureViewModel(application: Application):AndroidViewModel(application) {
 
     private val lectureRepository : LectureRepository = LectureRepository(application)
 
-    public fun getCourseLectures(courseId: String, callback: (ArrayList<Lecture>) -> Unit){
+    fun getCourseLectures(courseId: String, callback: (ArrayList<Lecture>) -> Unit){
         lectureRepository.getAllCourseLectures (courseId, callback)
     }
 //    init {

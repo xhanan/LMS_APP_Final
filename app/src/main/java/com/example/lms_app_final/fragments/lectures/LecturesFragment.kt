@@ -10,16 +10,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.lms_app.data.entities.Course
 import com.example.lms_app.data.entities.Lecture
 import com.example.lms_app.data.lectures.LectureViewModel
+import com.example.lms_app.fragments.courses.EditCourseFragment
 import com.example.lms_app_final.R
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 
 class LecturesFragment(private val courseData: Course)  : Fragment(),
-    LecturesAdapter.OnItemClickListener {
+    LecturesAdapter.OnItemClickListener ,EditLectureFragment.LectureEditedSuccessfully{
 
     private lateinit var database: DatabaseReference
     lateinit var lecturesList: ArrayList<Lecture>
+    private var editLectureFragment: EditLectureFragment? = null
 
     private var lectureAdapter: LecturesAdapter? = null
 
@@ -56,7 +58,8 @@ class LecturesFragment(private val courseData: Course)  : Fragment(),
     }
 
     override fun onEditClick(lectureData: Lecture, position: Int) {
-        TODO("Not yet implemented")
+        editLectureFragment = EditLectureFragment(lectureData, this)
+        editLectureFragment?.show(childFragmentManager,"EditLectureFragment")
     }
 
     override fun onDeleteClick(lectureData: Lecture, position: Int) {
@@ -68,5 +71,9 @@ class LecturesFragment(private val courseData: Course)  : Fragment(),
                 Toast.makeText(context, "Lecture not Deleted", Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    override fun onLecutreEdited(lectureData: Lecture) {
+        getAndShowLectures()
     }
 }

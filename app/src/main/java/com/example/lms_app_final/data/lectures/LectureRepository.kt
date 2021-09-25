@@ -41,6 +41,16 @@ class LectureRepository(var application: Application) {
         }
     }
 
+    fun editLecture(lectureData: Lecture, callback: (Boolean) -> Unit) {
+        database = FirebaseDatabase.getInstance().getReference("Lectures")
+        database.child(lectureData.id).setValue(lectureData).addOnSuccessListener {
+            callback(true)
+        }.addOnFailureListener {
+            Log.i("Failed to edit data", "Error: $it")
+            callback(false)
+        }
+    }
+
 //    fun getLectureById(id:Int) : Lecture{
 //        return lectureDao.getLectureById(id)
 //    }

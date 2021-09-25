@@ -36,8 +36,6 @@ class CourseRepository(var application: Application) {
             Log.i("Failed to edit data", "Error: $it")
             callback(false)
         }
-
-
     }
 
     fun getAllCourses(callback: (ArrayList<Course>) -> Unit) {

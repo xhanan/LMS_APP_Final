@@ -2,6 +2,7 @@ package com.example.lms_app.data.lectures
 //
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import com.example.lms_app.data.entities.Course
 import com.example.lms_app.data.entities.Lecture
 
 class LectureViewModel(application: Application):AndroidViewModel(application) {
@@ -40,4 +41,7 @@ class LectureViewModel(application: Application):AndroidViewModel(application) {
 //            lectureRepository.deleteLecture(lecture)
 //        }
 //    }
+    fun deleteLecture(lectureData: Lecture, callback: (Boolean) -> Unit){
+        lectureRepository.deleteLecture(lectureData, callback)
+    }
 }

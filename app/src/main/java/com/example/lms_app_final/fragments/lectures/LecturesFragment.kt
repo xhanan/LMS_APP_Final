@@ -2,6 +2,7 @@ package com.example.lms_app_final.fragments.lectures;
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -59,6 +60,13 @@ class LecturesFragment(private val courseData: Course)  : Fragment(),
     }
 
     override fun onDeleteClick(lectureData: Lecture, position: Int) {
-        TODO("Not yet implemented")
+        lectureViewModel.deleteLecture(lectureData) {
+            if (it) {
+                Toast.makeText(context, "Lecture Deleted Successfully", Toast.LENGTH_LONG).show()
+                getAndShowLectures()
+            } else {
+                Toast.makeText(context, "Lecture not Deleted", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 }

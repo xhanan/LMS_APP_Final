@@ -21,6 +21,10 @@ class LecturesAdapter(val context: Context, val lectureList: List<Lecture>, priv
         holder.itemBinding.lectureTitle.text = lectureList[position].title
         //Picasso.get().load(lectureList[position].ThumbnailUrl).error(R.drawable.backroud_blend).into(holder.itemBinding.thumbnailUrl)
         holder.itemBinding.lectureDate.text = lectureList[position].description
+
+        holder.itemBinding.deleteLecture.setOnClickListener {
+            listener.onDeleteClick(lectureList[position],position)
+        }
     }
 
     override fun getItemCount(): Int = lectureList.size

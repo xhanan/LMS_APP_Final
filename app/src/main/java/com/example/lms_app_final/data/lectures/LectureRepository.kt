@@ -1,6 +1,8 @@
 package com.example.lms_app.data.lectures
 
 import android.app.Application
+import android.util.Log
+import com.example.lms_app.data.entities.Course
 import com.example.lms_app.data.entities.Lecture
 import com.google.firebase.database.*
 
@@ -26,6 +28,17 @@ class LectureRepository(var application: Application) {
                 TODO("Not yet implemented")
             }
         })
+    }
+
+    fun deleteLecture(lectureData: Lecture, callback: (Boolean) -> Unit) {
+
+        database = FirebaseDatabase.getInstance().getReference("Lectures")
+        database.child(lectureData.id).removeValue().addOnSuccessListener {
+            callback(true)
+        }.addOnFailureListener {
+            Log.i("Failed to delete data", "Error: $it")
+            callback(false)
+        }
     }
 
 //    fun getLectureById(id:Int) : Lecture{

@@ -52,6 +52,7 @@ class RegisterFragment : Fragment() {
                         val profileUpdates = userProfileChangeRequest {
                             displayName = firstName + " " + lastName
                             phoneNumber = phoneNumber
+
                         }
 
                         user!!.updateProfile(profileUpdates)
@@ -81,11 +82,14 @@ class RegisterFragment : Fragment() {
         val phoneNumber = register_phoneNumber.text.toString()
         val email = register_email.text.toString()
         val password = register_password.text.toString()
+        val isInstructor = isInstructor.isChecked
+        val isStudent = isStudent.isChecked
 
-        if(inputCheck(firstName,lastName,phoneNumber,email,password)){
+        if(inputCheck(firstName,lastName,phoneNumber,email,password, isInstructor, isStudent)){
             val userId = databaseReference.push().key
 
-            val user = User(userId.toString(),firstName,lastName,phoneNumber,email,password)
+            val role = if (isInstructor) "INSTRUCTOR" else "STUDENT"
+            val user = User(userId.toString(),firstName,lastName,phoneNumber,email,password, role)
 
             if (userId != null) {
                 databaseReference.child(userId).setValue(user).addOnSuccessListener {
@@ -100,7 +104,7 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun inputCheck(fName : String, lName : String, pNumber : String, email : String, password : String) : Boolean{
-        return !(TextUtils.isEmpty(fName) && TextUtils.isEmpty(lName) && TextUtils.isEmpty(pNumber) && TextUtils.isEmpty(email) && TextUtils.isEmpty(password))
+    private fun inputCheck(fName : String, lName : String, pNumber : String, email : String, password : String, isInstructor: Boolean, isStudent : Boolean) : Boolean{
+        return !(TextUtils.isEmpty(fName) && TextUtils.isEmpty(lName) && TextUtils.isEmpty(pNumber) && TextUtils.isEmpty(email) && TextUtils.isEmpty(password) && (isInstructor && isStudent))
     }
 }

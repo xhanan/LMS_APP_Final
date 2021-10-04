@@ -13,6 +13,7 @@ import com.example.lms_app_final.databinding.FragmentHomeBinding
 import com.example.lms_app_final.fragments.lectures.AddLectureFragment
 import com.example.lms_app_final.fragments.lectures.LecturesFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import android.content.Intent
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

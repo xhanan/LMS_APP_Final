@@ -9,6 +9,7 @@
     tools:context=".fragments.register.RegisterFragment">
 
     <ImageView
+        android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/lms_logo"
@@ -106,13 +107,11 @@
         android:id="@+id/registerBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="64dp"
         android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_password"
-        tools:layout_editor_absoluteY="409dp"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -127,5 +126,37 @@
         app:layout_constraintTop_toBottomOf="@+id/registerBtn"
         tools:layout_editor_absoluteY="409dp"
         tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:layout_width="328dp"
+        android:layout_height="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/registerBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_password">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/isInstructor"
+                android:layout_width="162dp"
+                android:layout_height="match_parent"
+                android:text="Instructor"
+                android:textColor="#BDBDBD" />
+
+            <RadioButton
+                android:id="@+id/isStudent"
+                android:layout_width="170dp"
+                android:layout_height="match_parent"
+                android:text="Student"
+                android:textColor="#BDBDBD"
+                android:checked="true"/>
+
+        </RadioGroup>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

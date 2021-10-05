@@ -25,6 +25,10 @@ class LecturesAdapter(val context: Context, val lectureList: List<Lecture>, priv
         holder.itemBinding.deleteLecture.setOnClickListener {
             listener.onDeleteClick(lectureList[position],position)
         }
+
+        holder.itemView.setOnClickListener {
+            listener.onCourseItemClick(lectureList[position],position)
+        }
     }
 
     override fun getItemCount(): Int = lectureList.size

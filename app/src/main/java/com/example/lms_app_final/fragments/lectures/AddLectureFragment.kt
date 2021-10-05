@@ -43,7 +43,7 @@ class AddLectureFragment : Fragment() {
     private fun insertCourseToDatabase(databaseReference: DatabaseReference) {
         val title = add_lecture_Title.text.toString()
         val thumbnailUrl = add_lecture_thumbnail.text.toString()
-        val videoUrl = add_video_url.text.toString()
+        val videoUrl = add_lecture_thumbnail.text.toString().split("v=")[1]
         var description = add_lecture_desc.text.toString()
 
         if(inputCheck(title,description,thumbnailUrl,videoUrl)){

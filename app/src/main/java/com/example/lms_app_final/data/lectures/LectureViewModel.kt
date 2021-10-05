@@ -41,6 +41,11 @@ class LectureViewModel(application: Application):AndroidViewModel(application) {
 //            lectureRepository.deleteLecture(lecture)
 //        }
 //    }
+
+    fun getCourseLecture(lectureData: Lecture, callback: (Lecture) -> Unit){
+        lectureRepository.getLecture(lectureData,callback)
+    }
+
     fun deleteLecture(lectureData: Lecture, callback: (Boolean) -> Unit){
         lectureRepository.deleteLecture(lectureData, callback)
     }

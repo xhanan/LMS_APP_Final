@@ -9,6 +9,7 @@ import com.google.firebase.database.*
 class LectureRepository(var application: Application) {
     private lateinit var database: DatabaseReference
     var lectures = ArrayList<Lecture>()
+    var lecture = Lecture()
 
     fun getAllCourseLectures(courseId:String, callback: (ArrayList<Lecture>) -> Unit) {
         database = FirebaseDatabase.getInstance().getReference("Lectures")
@@ -48,6 +49,16 @@ class LectureRepository(var application: Application) {
         }.addOnFailureListener {
             Log.i("Failed to edit data", "Error: $it")
             callback(false)
+        }
+    }
+
+    fun getLecture(lectureData: Lecture,callback: (Lecture) -> Unit){
+        database = FirebaseDatabase.getInstance().getReference("Lectures")
+        database.child(lectureData.id).get().addOnSuccessListener {
+            callback(lecture!!)
+        }.addOnFailureListener{
+            Log.i("Failed to edit data", "Error: $it")
+            callback(lecture!!)
         }
     }
 

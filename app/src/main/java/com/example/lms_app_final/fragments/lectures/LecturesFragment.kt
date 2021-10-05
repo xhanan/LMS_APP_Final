@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,7 @@ import com.example.lms_app.data.entities.Lecture
 import com.example.lms_app.data.lectures.LectureViewModel
 import com.example.lms_app.fragments.courses.EditCourseFragment
 import com.example.lms_app_final.R
+import com.example.lms_app_final.fragments.singlelecture.SingleLectureFragment
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -27,6 +29,7 @@ class LecturesFragment(private val courseData: Course)  : Fragment(),
 
     lateinit var recyclerView: RecyclerView
     private val lectureViewModel by viewModels<LectureViewModel>()
+    private var singleLectureFragment : SingleLectureFragment? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +57,16 @@ class LecturesFragment(private val courseData: Course)  : Fragment(),
     }
 
     override fun onCourseItemClick(lectureData: Lecture, position: Int) {
-        TODO("Not yet implemented")
+        singleLectureFragment = SingleLectureFragment(lectureData)
+        val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+        transaction.replace(
+            R.id.fragment_container,
+            singleLectureFragment!!
+        )
+
+        transaction.addToBackStack(null)
+
+        transaction.commit()
     }
 
     override fun onEditClick(lectureData: Lecture, position: Int) {

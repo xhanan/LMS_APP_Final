@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.lms_app.MainActivity
 import com.example.lms_app.fragments.login.LoginFragment
-import com.example.lms_app_final.LoginActivity
+//import com.example.lms_app_final.LoginActivity
 import com.example.lms_app_final.R
 import com.example.lms_app_final.fragments.lectures.LecturesFragment
 import com.google.firebase.auth.FirebaseAuth
@@ -40,8 +40,8 @@ class ProfileFragment : Fragment() {
 
         view.profile_log_out.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            val mainIntent = Intent(activity, LoginActivity::class.java)
-            startActivity(mainIntent)
+//            val mainIntent = Intent(activity, LoginActivity::class.java)
+//            startActivity(mainIntent)
         }
 
         view.updateFullName.setOnClickListener{

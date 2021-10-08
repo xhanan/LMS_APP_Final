@@ -1,28 +1,14 @@
-//package com.example.lms_app.data.users
-//
-//import androidx.lifecycle.LiveData
-//import com.example.lms_app.data.entities.User
-//
-//class UserRepository(private val userDao: IUserDao) {
-//    suspend fun addUser(user: User){
-//        userDao.addUser(user)
-//    }
-//
-//    val allUsers : LiveData<List<User>> = userDao.getAllUsers()
-//
+package com.example.lms_app.data.users
+
+import com.example.lms_app.data.entities.User
+import com.example.lms_app.data.entities.UserRole
+
+class UserRoleRepository(private val userRoleDao: IUserRoleDao) {
+    suspend fun addUser(userRole: UserRole){
+        userRoleDao.addUserRole(userRole)
+    }
+
 //    fun getUserById(id: Int): User {
-//        return userDao.getUserById(id)
+//        return userRoleDao.getUserById(id)
 //    }
-//
-//    fun updateUser(user:User){
-//        userDao.updateUser(user)
-//    }
-//
-//    fun deleteUser(user:User){
-//        userDao.deleteUser(user)
-//    }
-//
-//    fun loginUser(email:String,password:String) : User{
-//        return userDao.loginUser(email,password)
-//    }
-//}
+}

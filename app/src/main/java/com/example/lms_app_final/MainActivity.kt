@@ -1,19 +1,15 @@
 package com.example.lms_app
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import com.example.lms_app.fragments.courses.AddCourseFragment
 import com.example.lms_app.fragments.courses.CoursesFragment
 import com.example.lms_app.fragments.home.HomeFragment
 import com.example.lms_app.fragments.profile.ProfileFragment
 import com.example.lms_app_final.R
-import com.example.lms_app_final.databinding.FragmentHomeBinding
 import com.example.lms_app_final.fragments.lectures.AddLectureFragment
-import com.example.lms_app_final.fragments.lectures.LecturesFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import android.content.Intent
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

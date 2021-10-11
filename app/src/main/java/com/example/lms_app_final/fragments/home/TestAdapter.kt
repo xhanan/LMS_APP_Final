@@ -2,6 +2,7 @@ package com.example.lms_app.fragments.home
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lms_app.data.entities.Course
@@ -19,6 +20,7 @@ class TestAdapter(val context : Context, val courseList : List<Course>,private v
 
     override fun onBindViewHolder(holder: TestAdapter.ViewHolder, position: Int) {
         holder.itemBinding.courseTitle.text = courseList[position].name
+        holder.itemBinding.deleteImage.visibility = View.INVISIBLE
         Picasso.get().load(courseList[position].imageUrl).error(R.drawable.backroud_blend).into(holder.itemBinding.imageUrl)
         holder.itemView.setOnClickListener {
             listener.onCourseItemClick(courseList[position],position)

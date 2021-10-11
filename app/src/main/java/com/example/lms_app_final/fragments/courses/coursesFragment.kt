@@ -2,7 +2,9 @@ package com.example.lms_app.fragments.courses
 
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
@@ -15,6 +17,7 @@ import com.example.lms_app_final.R
 import com.example.lms_app_final.fragments.lectures.LecturesFragment
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.custom_row.view.*
 
 @Suppress("DEPRECATION")
 class CoursesFragment : Fragment(), TestAdapter.OnItemClickListener,
@@ -28,6 +31,7 @@ class CoursesFragment : Fragment(), TestAdapter.OnItemClickListener,
     private var lecturesFragment: LecturesFragment? = null
 
     lateinit var recyclerView: RecyclerView
+    lateinit var imageView: ImageView
     private val CourseViewModel by viewModels<CourseViewModel>()
 
     override fun onCreateView(
@@ -49,7 +53,7 @@ class CoursesFragment : Fragment(), TestAdapter.OnItemClickListener,
     }
 
     override fun onCourseItemClick(courseData: Course, position: Int) {
-        lecturesFragment = LecturesFragment(courseData)
+        lecturesFragment = LecturesFragment(courseData.id)
         val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
         transaction.replace(
             R.id.fragment_container,

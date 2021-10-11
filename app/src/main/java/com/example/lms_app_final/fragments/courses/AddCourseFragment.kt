@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.lms_app.data.entities.Course
 import com.example.lms_app_final.R
+import com.example.lms_app_final.fragments.lectures.LecturesFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -21,6 +23,7 @@ class AddCourseFragment : Fragment() {
     private lateinit var auth : FirebaseAuth
     private lateinit var database : DatabaseReference
 
+    private var coursesFragment: CoursesFragment? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,12 +57,15 @@ class AddCourseFragment : Fragment() {
             if (courseId != null) {
                 databaseReference.child(courseId).setValue(course).addOnSuccessListener{
                     Toast.makeText(requireContext(),"Successfully added!", Toast.LENGTH_LONG).show()
-                    add_course_name.setText("")
-                    add_course_category.setText("")
-                    add_course_technology.setText("")
-                    add_course_instructor_id.setText("")
-                    add_course_image_url.setText("")
-                    add_course_description.setText("")
+                    coursesFragment = CoursesFragment()
+                    val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+                    transaction.replace(
+                        R.id.fragment_container,
+                        coursesFragment!!
+                    )
+
+                    transaction.addToBackStack(null)
+                    transaction.commit()
                 }.addOnFailureListener{
                     Toast.makeText(requireContext(),"Please fill all fields", Toast.LENGTH_LONG).show()
                 }

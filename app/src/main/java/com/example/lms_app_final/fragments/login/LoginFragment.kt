@@ -13,10 +13,11 @@ import com.example.lms_app_final.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_add.*
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.view.*
 
-class LoginFragment : Fragment() {
+class LoginFragment() : Fragment() {
 
     private lateinit var auth: FirebaseAuth
     override fun onCreateView(
@@ -36,6 +37,7 @@ class LoginFragment : Fragment() {
                 commit()
             }
         }
+
         view.loginBtn.setOnClickListener{
             val user_email = login_email.text.toString()
             val user_password = login_password.text.toString()

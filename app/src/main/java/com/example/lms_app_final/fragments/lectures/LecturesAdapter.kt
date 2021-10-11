@@ -32,10 +32,6 @@ class LecturesAdapter(val context: Context, val lectureList: List<Lecture>, priv
         holder.itemView.setOnClickListener {
             listener.onCourseItemClick(lectureList[position],position)
         }
-
-        holder.itemView.floatingActionButton.setOnClickListener {
-            listener.onActionClick(lectureList[position].courseId)
-        }
     }
 
     override fun getItemCount(): Int = lectureList.size
@@ -47,6 +43,5 @@ class LecturesAdapter(val context: Context, val lectureList: List<Lecture>, priv
         fun onCourseItemClick(lectureData: Lecture, position: Int)
         fun onEditClick(lectureData: Lecture, position: Int)
         fun onDeleteClick(lectureData: Lecture, position: Int)
-        fun onActionClick(courseId: String)
     }
 }

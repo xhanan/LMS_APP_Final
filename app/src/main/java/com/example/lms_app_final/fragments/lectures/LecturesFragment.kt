@@ -16,10 +16,11 @@ import com.example.lms_app_final.R
 import com.example.lms_app_final.fragments.singlelecture.SingleLectureFragment
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.fragment_lectures.view.*
 
 
-class LecturesFragment(private val courseData: Course) : Fragment(),
-    LecturesAdapter.OnItemClickListener ,EditLectureFragment.LectureEditedSuccessfully{
+class LecturesFragment(private val courseId: String) : Fragment(),
+    LecturesAdapter.OnItemClickListener, EditLectureFragment.LectureEditedSuccessfully{
 
     private lateinit var database: DatabaseReference
     lateinit var lecturesList: ArrayList<Lecture>
@@ -46,11 +47,15 @@ class LecturesFragment(private val courseData: Course) : Fragment(),
 
         getAndShowLectures()
 
+        view.floatingActionButton.setOnClickListener {
+            onActionClick(courseId)
+        }
+
         return view
     }
 
     fun getAndShowLectures() {
-        lectureViewModel.getCourseLectures(courseData.id) {
+        lectureViewModel.getCourseLectures(courseId) {
             print(it)
             lectureAdapter = LecturesAdapter(requireContext(), it, this)
             recyclerView.adapter = lectureAdapter
@@ -90,8 +95,8 @@ class LecturesFragment(private val courseData: Course) : Fragment(),
         getAndShowLectures()
     }
 
-    override fun onActionClick(courseId: String) {
-        addLectureFragment = AddLectureFragment(courseData.id)
+    fun onActionClick(courseId: String) {
+        addLectureFragment = AddLectureFragment(courseId)
         val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
         transaction.replace(
             R.id.fragment_container,
@@ -101,6 +106,5 @@ class LecturesFragment(private val courseData: Course) : Fragment(),
         transaction.addToBackStack(null)
 
         transaction.commit()
-
     }
 }

@@ -70,5 +70,4 @@
                 app:layoutManager="LinearLayoutManager" />
         </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

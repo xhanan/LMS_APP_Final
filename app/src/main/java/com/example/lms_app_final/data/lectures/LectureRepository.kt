@@ -8,12 +8,12 @@ import com.google.firebase.database.*
 
 class LectureRepository(var application: Application) {
     private lateinit var database: DatabaseReference
-    var lectures = ArrayList<Lecture>()
+
     var lecture = Lecture()
 
     fun getAllCourseLectures(courseId:String, callback: (ArrayList<Lecture>) -> Unit) {
         database = FirebaseDatabase.getInstance().getReference("Lectures")
-
+        var lectures = ArrayList<Lecture>()
         database.orderByChild("courseId").equalTo(courseId).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {

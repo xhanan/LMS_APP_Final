@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_addcourse.*
 import kotlinx.android.synthetic.main.fragment_addcourse.view.*
 import kotlinx.android.synthetic.main.fragment_addlecture.*
 
-class AddLectureFragment : Fragment() {
+class AddLectureFragment(private val courseId: String) : Fragment() {
     private lateinit var auth : FirebaseAuth
     private lateinit var database : DatabaseReference
 
@@ -48,8 +48,7 @@ class AddLectureFragment : Fragment() {
 
         if(inputCheck(title,description,thumbnailUrl,videoUrl)){
             val lectureId = databaseReference.push().key
-            var courseId = "-Mk7Vk2kZqUmg4h4TYQc"
-            val lecture = Lecture(lectureId.toString(),title,courseId, videoUrl, thumbnailUrl,description)
+            val lecture = Lecture(lectureId.toString(),title, courseId, videoUrl, thumbnailUrl,description)
 
             if (lectureId != null) {
                 databaseReference.child(lectureId).setValue(lecture).addOnSuccessListener{

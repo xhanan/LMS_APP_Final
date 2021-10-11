@@ -8,7 +8,8 @@ class UserRoleRepository(private val userRoleDao: IUserRoleDao) {
         userRoleDao.addUserRole(userRole)
     }
 
-//    fun getUserById(id: Int): User {
-//        return userRoleDao.getUserById(id)
-//    }
+    fun getUserById(id: String): UserRole {
+        var userRole = userRoleDao.getUserById(id)
+        return userRole
+    }
 }

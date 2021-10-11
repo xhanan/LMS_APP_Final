@@ -18,12 +18,13 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 
-class LecturesFragment(private val courseData: Course)  : Fragment(),
+class LecturesFragment(private val courseData: Course) : Fragment(),
     LecturesAdapter.OnItemClickListener ,EditLectureFragment.LectureEditedSuccessfully{
 
     private lateinit var database: DatabaseReference
     lateinit var lecturesList: ArrayList<Lecture>
     private var editLectureFragment: EditLectureFragment? = null
+    private var addLectureFragment: AddLectureFragment? = null
 
     private var lectureAdapter: LecturesAdapter? = null
 
@@ -87,5 +88,19 @@ class LecturesFragment(private val courseData: Course)  : Fragment(),
 
     override fun onLecutreEdited(lectureData: Lecture) {
         getAndShowLectures()
+    }
+
+    override fun onActionClick(courseId: String) {
+        addLectureFragment = AddLectureFragment(courseData.id)
+        val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+        transaction.replace(
+            R.id.fragment_container,
+            addLectureFragment!!
+        )
+
+        transaction.addToBackStack(null)
+
+        transaction.commit()
+
     }
 }

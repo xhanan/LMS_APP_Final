@@ -9,6 +9,9 @@ import com.example.lms_app.data.entities.Lecture
 import com.example.lms_app.fragments.home.TestAdapter
 import com.example.lms_app_final.R
 import com.example.lms_app_final.databinding.LectureListBinding
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_lectures.view.*
+
 //import com.squareup.picasso.Picasso
 
 class LecturesAdapter(val context: Context, val lectureList: List<Lecture>, private val listener: OnItemClickListener):RecyclerView.Adapter<LecturesAdapter.ViewHolder>(){
@@ -19,7 +22,7 @@ class LecturesAdapter(val context: Context, val lectureList: List<Lecture>, priv
 
     override fun onBindViewHolder(holder: LecturesAdapter.ViewHolder, position: Int) {
         holder.itemBinding.lectureTitle.text = lectureList[position].title
-        //Picasso.get().load(lectureList[position].ThumbnailUrl).error(R.drawable.backroud_blend).into(holder.itemBinding.thumbnailUrl)
+        Picasso.get().load(lectureList[position].thumbnailUrl).error(R.drawable.backroud_blend).into(holder.itemBinding.thumbnailUrl)
         holder.itemBinding.lectureDate.text = lectureList[position].description
 
         holder.itemBinding.deleteLecture.setOnClickListener {
@@ -28,6 +31,10 @@ class LecturesAdapter(val context: Context, val lectureList: List<Lecture>, priv
 
         holder.itemView.setOnClickListener {
             listener.onCourseItemClick(lectureList[position],position)
+        }
+
+        holder.itemView.floatingActionButton.setOnClickListener {
+            listener.onActionClick(lectureList[position].courseId)
         }
     }
 
@@ -40,5 +47,6 @@ class LecturesAdapter(val context: Context, val lectureList: List<Lecture>, priv
         fun onCourseItemClick(lectureData: Lecture, position: Int)
         fun onEditClick(lectureData: Lecture, position: Int)
         fun onDeleteClick(lectureData: Lecture, position: Int)
+        fun onActionClick(courseId: String)
     }
 }

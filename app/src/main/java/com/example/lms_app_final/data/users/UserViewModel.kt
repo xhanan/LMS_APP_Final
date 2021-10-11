@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.lms_app.data.DatabaseContext
+import com.example.lms_app.data.entities.User
 import com.example.lms_app.data.entities.UserRole
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,9 +23,7 @@ class UserViewModel(application: Application):AndroidViewModel(application) {
         }
     }
 
-//    fun getUserRoleById(id : Int){
-//        viewModelScope.launch(Dispatchers.IO) {
-//            repository.getUserById(id)
-//        }
-//    }
+    fun getUserRoleById(id : String): UserRole {
+        return repository.getUserById(id)
+    }
 }

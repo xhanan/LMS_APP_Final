@@ -9,6 +9,6 @@ interface IUserRoleDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addUserRole(userRole: UserRole)
 
-//    @Query("SELECT * FROM UserRole WHERE id = (:userId)")
-//    fun getUserById(userId : Int) : User
+    @Query("SELECT * FROM UserRole WHERE id = (:userId)")
+    fun getUserById(userId : String) : UserRole
 }

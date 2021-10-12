@@ -1,5 +1,7 @@
 package com.example.lms_app
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +23,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_register.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        loadLocale()
         mUserRoleViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         val user = Firebase.auth.currentUser
@@ -58,7 +62,38 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+    }
 
+
+    fun changeLocale(Lang: String) {
+
+        val locale = Locale(Lang)
+
+        Locale.setDefault(locale)
+
+        val config = Configuration()
+
+        config.locale = locale
+        baseContext.resources?.updateConfiguration(config, applicationContext?.resources?.displayMetrics)
+
+        val editor = baseContext?.getSharedPreferences("Settings", Context.MODE_PRIVATE)?.edit()
+        editor?.putString("My_Lang", Lang)
+        editor?.apply()
+        changeBottomNavText()
+    }
+
+    private fun loadLocale() {
+        val sharedPreferences = applicationContext?.getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        var language = sharedPreferences?.getString("My_Lang", "")
+        if (language != null) {
+            changeLocale(language)
+        }
+    }
+
+    private fun changeBottomNavText(){
+        bottom_nav.menu.findItem(R.id.nav_add_course).title =  getString(R.string.addCourseText)
+        bottom_nav.menu.findItem(R.id.nav_home).title =  getString(R.string.homeText)
+        bottom_nav.menu.findItem(R.id.nav_profile).title =  getString(R.string.profileText)
     }
 
     private  fun getUserRole(userId: String): UserRole {

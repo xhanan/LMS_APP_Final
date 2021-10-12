@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@drawable/gradient_background"
     android:layout_height="match_parent">
@@ -10,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Edit Course"
+        android:text="@string/editCourseText"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="30sp"
@@ -25,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="20dp"
-        android:hint="Course Name"
+        android:hint="@string/nameText"
         app:boxCornerRadiusBottomEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"
         app:boxCornerRadiusTopEnd="20dp"
@@ -49,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="20dp"
-        android:hint="Category"
+        android:hint="@string/categoryText"
         app:boxCornerRadiusBottomEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"
         app:boxCornerRadiusTopEnd="20dp"
@@ -73,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="20dp"
-        android:hint="Description"
+        android:hint="@string/descriptionText"
         app:boxCornerRadiusBottomEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"
         app:boxCornerRadiusTopEnd="20dp"
@@ -116,36 +117,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/instructorField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="20dp"
-        android:hint="Instructor Id"
-        app:boxCornerRadiusBottomEnd="20dp"
-        app:boxCornerRadiusBottomStart="20dp"
-        app:boxCornerRadiusTopEnd="20dp"
-        app:boxCornerRadiusTopStart="20dp"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
-        app:hintTextColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/imageUrlField">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/course_instructor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/technologyField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="20dp"
-        android:hint="Technology"
+        android:hint="@string/technologyText"
         app:boxCornerRadiusBottomEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"
         app:boxCornerRadiusTopEnd="20dp"
@@ -153,7 +130,9 @@
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:hintTextColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/instructorField">
+        app:layout_constraintEnd_toEndOf="@+id/imageUrlField"
+        app:layout_constraintStart_toStartOf="@+id/imageUrlField"
+        app:layout_constraintTop_toBottomOf="@+id/imageUrlField">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/course_technology"
@@ -171,7 +150,7 @@
         android:backgroundTint="#006DFF"
         android:clickable="true"
         android:focusable="true"
-        android:text="Edit Order"
+        android:text="@string/editCourseText"
         app:layout_constraintEnd_toEndOf="@id/technologyField"
         app:layout_constraintTop_toBottomOf="@id/technologyField" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,11 +3,9 @@ package com.example.lms_app
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
-import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.lms_app.data.entities.User
 import com.example.lms_app.data.entities.UserRole
 import com.example.lms_app.data.users.UserViewModel
 import com.example.lms_app.fragments.courses.AddCourseFragment
@@ -15,15 +13,11 @@ import com.example.lms_app.fragments.courses.CoursesFragment
 import com.example.lms_app.fragments.home.HomeFragment
 import com.example.lms_app.fragments.profile.ProfileFragment
 import com.example.lms_app_final.R
-import com.example.lms_app_final.fragments.lectures.AddLectureFragment
-import com.google.android.material.navigation.NavigationBarItemView
-import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_register.*
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -102,6 +96,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setCurrentFragment(fragment:Fragment)=
         supportFragmentManager.beginTransaction().apply {
+            setCustomAnimations(R.anim.enter_right_to_left,R.anim.exit_riht_to_left,R.anim.enter_left_to_right,R.anim.exit_left_to_right)
             replace(R.id.fragment_container,fragment)
             commit()
         }

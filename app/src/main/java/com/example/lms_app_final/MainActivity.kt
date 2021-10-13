@@ -6,6 +6,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
+import com.example.lms_app.data.DatabaseContext
 import com.example.lms_app.data.entities.UserRole
 import com.example.lms_app.data.users.UserViewModel
 import com.example.lms_app.fragments.courses.AddCourseFragment
@@ -18,6 +20,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_register.*
+import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,17 +31,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+         DatabaseContext.getInstance(application)
         loadLocale()
         mUserRoleViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         val user = Firebase.auth.currentUser
 
-//        var userRole = UserRole()
+        var userRole = UserRole()
 //        user?.let {
 //            userRole = getUserRole(it.uid)
 //        }
-//
-//        if(userRole.role.equals("INSTRUCTOR"))
+
+//        if(!userRole.role.equals("INSTRUCTOR"))
 //            bottom_nav.menu.findItem(R.id.nav_add_course).isVisible = false
 
         val homeFragment=HomeFragment()

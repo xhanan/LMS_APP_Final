@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso
 //import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.custom_row.view.*
 
-class TestAdapter(val context : Context, val courseList : List<Course>,private val listener: OnItemClickListener):RecyclerView.Adapter<TestAdapter.ViewHolder>(){
+class TestAdapter(val context : Context, val role : String, val courseList : List<Course>,private val listener: OnItemClickListener):RecyclerView.Adapter<TestAdapter.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TestAdapter.ViewHolder {
         var holder = ViewHolder(CustomRowBinding.inflate(LayoutInflater.from(parent.context), parent, false))
         return holder
@@ -20,7 +20,12 @@ class TestAdapter(val context : Context, val courseList : List<Course>,private v
 
     override fun onBindViewHolder(holder: TestAdapter.ViewHolder, position: Int) {
         holder.itemBinding.courseTitle.text = courseList[position].name
-        holder.itemBinding.deleteImage.visibility = View.INVISIBLE
+        if(!role.equals("INSTRUCTOR"))
+        {
+            holder.itemBinding.deleteImage.visibility = View.INVISIBLE
+            holder.itemBinding.editImage.visibility = View.INVISIBLE
+        }
+
         Picasso.get().load(courseList[position].imageUrl).error(R.drawable.backroud_blend).into(holder.itemBinding.imageUrl)
         holder.itemView.setOnClickListener {
             listener.onCourseItemClick(courseList[position],position)

@@ -14,12 +14,14 @@ import com.example.lms_app.data.entities.UserRole
 import com.example.lms_app.data.users.UserViewModel
 import com.example.lms_app.fragments.login.LoginFragment
 import com.example.lms_app_final.R
+import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register.view.*
+import java.lang.Exception
 
 class RegisterFragment : Fragment() {
 
@@ -86,7 +88,12 @@ class RegisterFragment : Fragment() {
                         Toast.makeText(requireContext(), "Authentication failed.",
                             Toast.LENGTH_SHORT).show()
                     }
-                }
+                }.addOnFailureListener { object : OnFailureListener{
+                    override fun onFailure(p0: Exception) {
+                        print(p0)
+                    }
+
+                } }
         }
         return view
     }

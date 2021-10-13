@@ -9,10 +9,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lms_app.data.courses.CourseViewModel
 import com.example.lms_app.data.entities.Course
+import com.example.lms_app.data.entities.UserRole
+import com.example.lms_app.data.users.UserViewModel
 import com.example.lms_app.fragments.home.TestAdapter
 import com.example.lms_app_final.R
 import com.example.lms_app_final.fragments.lectures.LecturesFragment
@@ -31,8 +34,10 @@ class CoursesFragment : Fragment(), TestAdapter.OnItemClickListener,
     private var courseAdapter: TestAdapter? = null
     private var editCourseFragment: EditCourseFragment? = null
     private var lecturesFragment: LecturesFragment? = null
+    private lateinit var mUserRoleViewModel : UserViewModel
 
     lateinit var recyclerView: RecyclerView
+    lateinit var role: String
     lateinit var imageView: ImageView
     private val CourseViewModel by viewModels<CourseViewModel>()
 
@@ -47,12 +52,17 @@ class CoursesFragment : Fragment(), TestAdapter.OnItemClickListener,
         database = FirebaseDatabase.getInstance().getReference("Courses")
         recyclerView.setHasFixedSize(true)
 
-        val user = Firebase.auth.currentUser
-        val userRole = user!!.photoUrl.toString()
-        Toast.makeText(context, userRole, Toast.LENGTH_LONG).show()
-
         recyclerView.layoutManager = LinearLayoutManager(view.context)
 
+        mUserRoleViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        val user = Firebase.auth.currentUser
+
+        var userRole = UserRole()
+        user?.let {
+            userRole = getUserRole(it.uid)
+        }
+
+        role = userRole.role
         getAndShowCourses()
 
         return view
@@ -90,13 +100,17 @@ class CoursesFragment : Fragment(), TestAdapter.OnItemClickListener,
     fun getAndShowCourses() {
         CourseViewModel.getCourses {
             print(it)
-            courseAdapter = TestAdapter(requireContext(), it, this)
+            courseAdapter = TestAdapter(requireContext(), role, it, this)
             recyclerView.adapter = courseAdapter
         }
     }
 
     override fun onCourseEdited(courseData: Course) {
         getAndShowCourses()
+    }
+
+    private  fun getUserRole(userId: String): UserRole {
+        return mUserRoleViewModel.getUserRoleById(userId)
     }
 }
 

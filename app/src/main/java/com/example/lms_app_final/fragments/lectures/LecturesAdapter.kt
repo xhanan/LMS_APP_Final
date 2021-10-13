@@ -2,6 +2,7 @@ package com.example.lms_app_final.fragments.lectures
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lms_app.data.entities.Course
@@ -14,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_lectures.view.*
 
 //import com.squareup.picasso.Picasso
 
-class LecturesAdapter(val context: Context, val lectureList: List<Lecture>, private val listener: OnItemClickListener):RecyclerView.Adapter<LecturesAdapter.ViewHolder>(){
+class LecturesAdapter(val context: Context, val role: String, val lectureList: List<Lecture>, private val listener: OnItemClickListener):RecyclerView.Adapter<LecturesAdapter.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LecturesAdapter.ViewHolder {
         var holder = ViewHolder(LectureListBinding.inflate(LayoutInflater.from(parent.context), parent, false))
         return holder
@@ -22,6 +23,10 @@ class LecturesAdapter(val context: Context, val lectureList: List<Lecture>, priv
 
     override fun onBindViewHolder(holder: LecturesAdapter.ViewHolder, position: Int) {
         holder.itemBinding.lectureTitle.text = lectureList[position].title
+        if(!role.equals("INSTRUCTOR"))
+        {
+            holder.itemBinding.deleteLecture.visibility = View.INVISIBLE
+        }
         Picasso.get().load(lectureList[position].thumbnailUrl).error(R.drawable.backroud_blend).into(holder.itemBinding.thumbnailUrl)
         holder.itemBinding.lectureDate.text = lectureList[position].description
 

@@ -6,16 +6,21 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lms_app.data.entities.Course
 import com.example.lms_app.data.entities.Lecture
+import com.example.lms_app.data.entities.UserRole
 import com.example.lms_app.data.lectures.LectureViewModel
+import com.example.lms_app.data.users.UserViewModel
 import com.example.lms_app.fragments.courses.EditCourseFragment
 import com.example.lms_app_final.R
 import com.example.lms_app_final.fragments.singlelecture.SingleLectureFragment
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_lectures.view.*
 
 
@@ -24,8 +29,11 @@ class LecturesFragment(private val courseId: String) : Fragment(),
 
     private lateinit var database: DatabaseReference
     lateinit var lecturesList: ArrayList<Lecture>
+    lateinit var role: String
     private var editLectureFragment: EditLectureFragment? = null
     private var addLectureFragment: AddLectureFragment? = null
+
+    private lateinit var mUserRoleViewModel : UserViewModel
 
     private var lectureAdapter: LecturesAdapter? = null
 
@@ -45,8 +53,21 @@ class LecturesFragment(private val courseId: String) : Fragment(),
 
         recyclerView.layoutManager = LinearLayoutManager(view.context)
 
+        mUserRoleViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        val user = Firebase.auth.currentUser
+
+        var userRole = UserRole()
+        user?.let {
+            userRole = getUserRole(it.uid)
+        }
+
+        role = userRole.role
         getAndShowLectures()
 
+        if(!role.equals("INSTRUCTOR"))
+        {
+            view.floatingActionButton.visibility = View.INVISIBLE
+        }
         view.floatingActionButton.setOnClickListener {
             onActionClick(courseId)
         }
@@ -57,7 +78,7 @@ class LecturesFragment(private val courseId: String) : Fragment(),
     fun getAndShowLectures() {
         lectureViewModel.getCourseLectures(courseId) {
             print(it)
-            lectureAdapter = LecturesAdapter(requireContext(), it, this)
+            lectureAdapter = LecturesAdapter(requireContext(), role, it, this)
             recyclerView.adapter = lectureAdapter
         }
     }
@@ -106,5 +127,9 @@ class LecturesFragment(private val courseId: String) : Fragment(),
         transaction.addToBackStack(null)
 
         transaction.commit()
+    }
+
+    private  fun getUserRole(userId: String): UserRole {
+        return mUserRoleViewModel.getUserRoleById(userId)
     }
 }

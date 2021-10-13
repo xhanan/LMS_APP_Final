@@ -30,7 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="194dp"
                     android:importantForAccessibility="no"
-                    android:src="@drawable/home_vector" />
+                    android:src="@drawable/profile" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Edit Lecture"
+        android:text="@string/editLectureText"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="30sp"
@@ -124,7 +124,7 @@
         android:backgroundTint="#006DFF"
         android:clickable="true"
         android:focusable="true"
-        android:text="Edit Lecture"
+        android:text="@string/editLectureText"
         app:layout_constraintEnd_toEndOf="@id/lectureDescriptionField"
         app:layout_constraintTop_toBottomOf="@id/lectureDescriptionField" />
 </androidx.constraintlayout.widget.ConstraintLayout>

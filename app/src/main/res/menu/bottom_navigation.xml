@@ -3,24 +3,24 @@
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/home_vector"
-        android:title="Home"
+        android:title="@string/homeText"
         />
 
     <item
         android:id="@+id/nav_courses"
         android:icon="@drawable/course_icon"
-        android:title="Courses"
+        android:title="@string/coursesText"
         />
 
     <item
         android:id="@+id/nav_add_course"
         android:icon="@drawable/ic_add"
-        android:title="Add Course"
+        android:title="@string/addCourseText"
         />
 
     <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/profile_icon"
-        android:title="Profile"
+        android:title="@string/profileText"
         />
 </menu>

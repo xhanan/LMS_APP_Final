@@ -21,7 +21,6 @@ class EditCourseFragment(private val courseData: Course,private val listener: Co
         binding?.courseImage?.setText(courseData.imageUrl)
         binding?.courseName?.setText(courseData.name)
         binding?.courseTechnology?.setText(courseData.technology)
-        binding?.courseInstructor?.setText(courseData.instructorId)
 
         binding?.editCourseButton?.setOnClickListener {
             viewModel.submitEdit(Course(
@@ -29,7 +28,6 @@ class EditCourseFragment(private val courseData: Course,private val listener: Co
                 binding?.courseName?.text.toString(),
                 binding?.courseCategory?.text.toString(),
                 binding?.courseTechnology?.text.toString(),
-                binding?.courseInstructor?.text.toString(),
                 binding?.courseImage?.text.toString(),
                 binding?.courseDescription?.text.toString(),
                 )){

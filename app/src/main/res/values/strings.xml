@@ -1,13 +1,46 @@
 <resources>
     <string name="app_name">LMS_APP_Final</string>
-    <string name="title_activity_login_register">LoginRegisterActivity</string>
+    <string name="title_activity_login_register" translatable="false">LoginRegisterActivity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="title_activity_login">Login</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_login" translatable="false">Login</string>
+
+    <string name="loginText">LOGIN</string>
+    <string name="englishText">English</string>
+    <string name="albanianText">Albanian</string>
+    <string name="chooseLangText">Choose Language</string>
+    <string name="registerText">REGISTER</string>
+    <string name="passwordText">Password</string>
+    <string name="firstNameText">First Name</string>
+    <string name="lastNameText">Last Name</string>
+    <string name="fullNameText">Full Name</string>
+    <string name="oldPasswordText">Old Password</string>
+    <string name="newPasswordText">New Password</string>
+    <string name="confirmNewPasswordText">Confirm New Password</string>
+    <string name="updateNameText">Update Name</string>
+    <string name="changePasswordText">Change Password</string>
+    <string name="phoneNumberText">Phone Number</string>
+    <string name="instructorText">Instructor</string>
+    <string name="homeText">Home</string>
+    <string name="coursesText">Courses</string>
+    <string name="addCourseText">Add Course</string>
+    <string name="nameText">Name</string>
+    <string name="categoryText">Category</string>
+    <string name="technologyText">Technology</string>
+    <string name="descriptionText">Description</string>
+    <string name="listOfCoursesAvailableText">This is the list of courses available.</string>
+    <string name="listOfLecturesAvailableText">These are the lectures of the selected course.</string>
+    <string name="lecturesText">Lectures</string>
+    <string name="addLectureText">Add Lecture</string>
+    <string name="titleText">Title</string>
+    <string name="profileText">Profile</string>
+    <string name="editCourseText">Edit Course</string>
+    <string name="editLectureText">Edit Lecture</string>
+
 </resources>

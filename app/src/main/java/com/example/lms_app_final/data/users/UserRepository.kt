@@ -5,9 +5,7 @@ import com.example.lms_app.data.DatabaseContext
 import com.example.lms_app.data.entities.User
 import com.example.lms_app.data.entities.UserRole
 
-class UserRoleRepository(context:Context,private val userRoleDao: IUserRoleDao) {
-
-    val userDao = DatabaseContext.getInstance(context)?.userRoleDao()
+class UserRoleRepository(private val userRoleDao: IUserRoleDao) {
 
     suspend fun addUser(userRole: UserRole){
         userRoleDao.addUserRole(userRole)

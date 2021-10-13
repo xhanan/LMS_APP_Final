@@ -13,7 +13,7 @@ class UserViewModel(application: Application):AndroidViewModel(application) {
     private val repository : UserRoleRepository
 
     init {
-        val userDao = DatabaseContext.getInstance(application)?.userRoleDao()
+        val userDao = DatabaseContext.getDatabase(application)?.userRoleDao()
 
         repository = UserRoleRepository(userDao!!)
     }

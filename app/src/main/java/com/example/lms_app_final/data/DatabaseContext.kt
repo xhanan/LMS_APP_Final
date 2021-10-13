@@ -9,27 +9,27 @@ import com.example.lms_app.data.entities.*
 import com.example.lms_app.data.users.IUserRoleDao
 import com.google.firebase.firestore.auth.User
 
-@Database(entities = [UserRole::class], version = 1, exportSchema = false)
+@Database(entities = [UserRole::class], version = 1)
 abstract class DatabaseContext : RoomDatabase() {
-
-    abstract fun userRoleDao() : IUserRoleDao
+    abstract fun userRoleDao(): IUserRoleDao?
 
     companion object {
         private var INSTANCE: DatabaseContext? = null
-
-        fun getInstance(context: Context): DatabaseContext? {
+        fun getDatabase(context: Context): DatabaseContext? {
             if (INSTANCE == null) {
-                synchronized(DatabaseContext::class) {
-                    INSTANCE = Room.databaseBuilder(context.applicationContext,
-                        DatabaseContext::class.java, "MLS").allowMainThreadQueries()
-                        .build()
+                synchronized(DatabaseContext::class.java) {
+                    if (INSTANCE == null) {
+                        INSTANCE =
+                            Room.databaseBuilder(context.applicationContext,
+                                DatabaseContext::class.java,
+                                "LMS_Database") // Wipes and rebuilds instead of migrating
+                                // if no Migration object.
+                                .fallbackToDestructiveMigration().allowMainThreadQueries()
+                                .build()
+                    }
                 }
             }
             return INSTANCE
-        }
-
-        fun destroyInstance() {
-            INSTANCE = null
         }
     }
 }

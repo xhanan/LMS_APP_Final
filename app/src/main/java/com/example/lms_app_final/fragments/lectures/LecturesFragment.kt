@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lms_app.data.DatabaseContext
 import com.example.lms_app.data.entities.Course
 import com.example.lms_app.data.entities.Lecture
 import com.example.lms_app.data.entities.UserRole
@@ -58,7 +59,7 @@ class LecturesFragment(private val courseId: String) : Fragment(),
 
         var userRole = UserRole()
         user?.let {
-            userRole = getUserRole(it.uid)
+            userRole = activity?.let { it1 -> DatabaseContext.getDatabase(it1.applicationContext)?.userRoleDao()?.getUserById(user?.uid!!) }!!
         }
 
         role = userRole.role

@@ -1,10 +1,11 @@
 package com.example.lms_app.fragments.courses
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
@@ -15,9 +16,10 @@ import com.example.lms_app.data.entities.Course
 import com.example.lms_app.fragments.home.TestAdapter
 import com.example.lms_app_final.R
 import com.example.lms_app_final.fragments.lectures.LecturesFragment
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.custom_row.view.*
+import com.google.firebase.ktx.Firebase
 
 @Suppress("DEPRECATION")
 class CoursesFragment : Fragment(), TestAdapter.OnItemClickListener,
@@ -44,6 +46,10 @@ class CoursesFragment : Fragment(), TestAdapter.OnItemClickListener,
         recyclerView = view.findViewById(R.id.recycler_view)
         database = FirebaseDatabase.getInstance().getReference("Courses")
         recyclerView.setHasFixedSize(true)
+
+        val user = Firebase.auth.currentUser
+        val userRole = user!!.photoUrl.toString()
+        Toast.makeText(context, userRole, Toast.LENGTH_LONG).show()
 
         recyclerView.layoutManager = LinearLayoutManager(view.context)
 

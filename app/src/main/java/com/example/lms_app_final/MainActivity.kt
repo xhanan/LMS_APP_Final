@@ -26,9 +26,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         mUserRoleViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-
         val user = Firebase.auth.currentUser
-        var userRole = UserRole()
+
+//        var userRole = UserRole()
 //        user?.let {
 //            userRole = getUserRole(it.uid)
 //        }

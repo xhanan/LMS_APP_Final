@@ -1,6 +1,6 @@
 package com.example.lms_app.fragments.register
 
-import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.lms_app.MainActivity
 import com.example.lms_app.data.entities.UserRole
 import com.example.lms_app.data.users.UserViewModel
 import com.example.lms_app.fragments.login.LoginFragment
@@ -50,6 +49,8 @@ class RegisterFragment : Fragment() {
             var firstName = register_firstName.text.toString()
             var lastName = register_lastName.text.toString()
             var phoneNumber = register_phoneNumber.text.toString()
+            val isInstructor = view?.isInstructor?.isChecked ?: false
+            val role = if (isInstructor) "INSTRUCTOR" else "STUDENT"
 
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
@@ -60,12 +61,13 @@ class RegisterFragment : Fragment() {
                         val profileUpdates = userProfileChangeRequest {
                             displayName = firstName + " " + lastName
                             phoneNumber = phoneNumber
+                            photoUri = Uri.parse(role)
                         }
 
                         user!!.updateProfile(profileUpdates)
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
-                                    insertDataToDatabase(user.providerId);
+                                    insertDataToDatabase(user.uid,isInstructor);
                                     Toast.makeText(requireContext(),"Successfully registered!", Toast.LENGTH_LONG).show()
                                 }
                             }
@@ -89,9 +91,7 @@ class RegisterFragment : Fragment() {
         return view
     }
 
-    private  fun insertDataToDatabase(userId : String){
-        val isInstructor = isInstructor.isChecked
-
+    private  fun insertDataToDatabase(userId : String, isInstructor : Boolean){
         val role = if (isInstructor) "INSTRUCTOR" else "STUDENT"
         val userRole = UserRole(userId, role)
 

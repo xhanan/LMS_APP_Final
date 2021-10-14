@@ -54,15 +54,9 @@ class CoursesFragment : Fragment(), TestAdapter.OnItemClickListener,
 
         recyclerView.layoutManager = LinearLayoutManager(view.context)
 
-        mUserRoleViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         val user = Firebase.auth.currentUser
 
-        var userRole = UserRole()
-        user?.let {
-            userRole = getUserRole(it.uid)
-        }
-
-        role = userRole.role
+        role = user?.photoUrl.toString()
         getAndShowCourses()
 
         return view
@@ -107,10 +101,6 @@ class CoursesFragment : Fragment(), TestAdapter.OnItemClickListener,
 
     override fun onCourseEdited(courseData: Course) {
         getAndShowCourses()
-    }
-
-    private  fun getUserRole(userId: String): UserRole {
-        return mUserRoleViewModel.getUserRoleById(userId)
     }
 }
 

@@ -24,7 +24,7 @@ abstract class DatabaseContext : RoomDatabase() {
                                 DatabaseContext::class.java,
                                 "LMS_Database") // Wipes and rebuilds instead of migrating
                                 // if no Migration object.
-                                .fallbackToDestructiveMigration().allowMainThreadQueries()
+                                .allowMainThreadQueries()
                                 .build()
                     }
                 }

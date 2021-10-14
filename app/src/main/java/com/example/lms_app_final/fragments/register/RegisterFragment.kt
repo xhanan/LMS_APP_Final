@@ -39,7 +39,15 @@ class RegisterFragment : Fragment() {
         mUserRoleViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         view.login_btn.setOnClickListener{
-            findNavController().navigate(R.id.action_register_fragment_to_login_fragment)
+            loginFragment = LoginFragment()
+            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(
+                R.id.fragment_container,
+                loginFragment!!
+            )
+
+            transaction.addToBackStack(null)
+            transaction.commit()
         }
 
 
@@ -53,36 +61,28 @@ class RegisterFragment : Fragment() {
             var phoneNumber = register_phoneNumber.text.toString()
             val isInstructor = view?.isInstructor?.isChecked ?: false
             val role = if (isInstructor) "INSTRUCTOR" else "STUDENT"
-
+            var isCompleted = false
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
+                        isCompleted = true
                         val user = auth.currentUser
 
                         val profileUpdates = userProfileChangeRequest {
+                            photoUri = Uri.parse(role)
                             displayName = firstName + " " + lastName
                             phoneNumber = phoneNumber
-                            photoUri = Uri.parse(role)
                         }
 
                         user!!.updateProfile(profileUpdates)
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
-                                    insertDataToDatabase(user.uid,isInstructor);
-                                    Toast.makeText(requireContext(),"Successfully registered!", Toast.LENGTH_LONG).show()
+                                    //insertDataToDatabase(user.uid,isInstructor);
+                                    Toast.makeText(requireContext(),"Profile updated", Toast.LENGTH_LONG).show()
                                 }
                             }
-
-                        loginFragment = LoginFragment()
-                        val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
-                        transaction.replace(
-                            R.id.fragment_container,
-                            loginFragment!!
-                        )
-
-                        transaction.addToBackStack(null)
-                        transaction.commit()
+                        Toast.makeText(requireContext(), "Registered Successfully.",Toast.LENGTH_SHORT).show()
                     } else {
                         // If sign in fails, display a message to the user.
                         Toast.makeText(requireContext(), "Authentication failed.",
@@ -98,10 +98,10 @@ class RegisterFragment : Fragment() {
         return view
     }
 
-    private  fun insertDataToDatabase(userId : String, isInstructor : Boolean){
-        val role = if (isInstructor) "INSTRUCTOR" else "STUDENT"
-        val userRole = UserRole(userId, role)
-
-        mUserRoleViewModel.addUserRole(userRole)
-    }
+//    private  fun insertDataToDatabase(userId : String, isInstructor : Boolean){
+//        val role = if (isInstructor) "INSTRUCTOR" else "STUDENT"
+//        val userRole = UserRole(userId, role)
+//
+//        mUserRoleViewModel.addUserRole(userRole)
+//    }
 }

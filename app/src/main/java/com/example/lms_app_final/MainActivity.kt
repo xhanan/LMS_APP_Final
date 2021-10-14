@@ -3,6 +3,7 @@ package com.example.lms_app
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -33,13 +34,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         loadLocale()
 
-        mUserRoleViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        //mUserRoleViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         val user = Firebase.auth.currentUser
 
-        var userRole = DatabaseContext.getDatabase(this)?.userRoleDao()?.getUserById(user?.uid!!)!!
+//        var userRole = DatabaseContext.getDatabase(this)?.userRoleDao()?.getUserById(user?.uid!!)!!
 
-        if(!userRole.role.equals("INSTRUCTOR"))
-            bottom_nav.menu.findItem(R.id.nav_add_course).isVisible = false
+        if (user != null && !user.photoUrl.toString()?.equals("INSTRUCTOR")!!) {
+                bottom_nav.menu.findItem(R.id.nav_add_course).isVisible = false
+        }else if(user != null && user.photoUrl.toString()?.equals("INSTRUCTOR")!!)
+        {
+            bottom_nav.menu.findItem(R.id.nav_add_course).isVisible = true
+        }
 
         val homeFragment=HomeFragment()
         val coursesFragment=CoursesFragment()

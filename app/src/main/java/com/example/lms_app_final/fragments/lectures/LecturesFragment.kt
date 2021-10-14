@@ -54,18 +54,12 @@ class LecturesFragment(private val courseId: String) : Fragment(),
 
         recyclerView.layoutManager = LinearLayoutManager(view.context)
 
-        mUserRoleViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         val user = Firebase.auth.currentUser
 
-        var userRole = UserRole()
-        user?.let {
-            userRole = activity?.let { it1 -> DatabaseContext.getDatabase(it1.applicationContext)?.userRoleDao()?.getUserById(user?.uid!!) }!!
-        }
-
-        role = userRole.role
         getAndShowLectures()
+        role = user?.photoUrl.toString()
 
-        if(!role.equals("INSTRUCTOR"))
+        if(!user?.photoUrl.toString()?.equals("INSTRUCTOR")!!)
         {
             view.floatingActionButton.visibility = View.INVISIBLE
         }
@@ -128,9 +122,5 @@ class LecturesFragment(private val courseId: String) : Fragment(),
         transaction.addToBackStack(null)
 
         transaction.commit()
-    }
-
-    private  fun getUserRole(userId: String): UserRole {
-        return mUserRoleViewModel.getUserRoleById(userId)
     }
 }
